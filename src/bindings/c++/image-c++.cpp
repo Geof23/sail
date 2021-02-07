@@ -303,7 +303,8 @@ image& image::with_shallow_pixels(void *pixels)
 
 image& image::with_shallow_pixels(void *pixels, unsigned pixels_size)
 {
-    sail_free(d->pixels);
+    if(!d->shallow_pixels)
+        sail_free(d->pixels);
 
     d->pixels         = nullptr;
     d->pixels_size    = 0;
